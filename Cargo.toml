@@ -44,7 +44,7 @@ opt-level = 2
 
 [workspace.dependencies]
 puffin = "0.18"
-raw-window-handle = "0.6.0"
+raw-window-handle = "0.5.2"
 thiserror = "1.0.37"
 
 # Make the renderer `Sync` even on wasm32, because it makes the code simpler:
