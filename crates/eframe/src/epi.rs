@@ -64,7 +64,7 @@ pub struct CreationContext<'s> {
     ///
     /// Only available when compiling with the `glow` feature and using [`Renderer::Glow`].
     #[cfg(feature = "glow")]
-    pub gl: Option<std::rc::Rc<glow::Context>>,
+    pub gl: Option<std::sync::Arc<glow::Context>>,
 
     /// The underlying WGPU render state.
     ///
@@ -217,7 +217,7 @@ pub enum HardwareAcceleration {
 
 /// Options controlling the behavior of a native window.
 ///
-/// Addintional windows can be opened using (egui viewports)[`egui::viewport`].
+/// Additional windows can be opened using (egui viewports)[`egui::viewport`].
 ///
 /// Set the window title and size using [`Self::viewport`].
 ///
@@ -298,7 +298,7 @@ pub struct NativeOptions {
     ///
     /// This feature was introduced in <https://github.com/emilk/egui/pull/1889>.
     ///
-    /// When `true`, [`winit::platform::run_return::EventLoopExtRunReturn::run_return`] is used.
+    /// When `true`, [`winit::platform::run_on_demand::EventLoopExtRunOnDemand`] is used.
     /// When `false`, [`winit::event_loop::EventLoop::run`] is used.
     pub run_and_return: bool,
 
@@ -584,7 +584,7 @@ pub struct Frame {
 
     /// A reference to the underlying [`glow`] (OpenGL) context.
     #[cfg(feature = "glow")]
-    pub(crate) gl: Option<std::rc::Rc<glow::Context>>,
+    pub(crate) gl: Option<std::sync::Arc<glow::Context>>,
 
     /// Can be used to manage GPU resources for custom rendering with WGPU using [`egui::PaintCallback`]s.
     #[cfg(feature = "wgpu")]
@@ -656,7 +656,7 @@ impl Frame {
     /// To get a [`glow`] context you need to compile with the `glow` feature flag,
     /// and run eframe using [`Renderer::Glow`].
     #[cfg(feature = "glow")]
-    pub fn gl(&self) -> Option<&std::rc::Rc<glow::Context>> {
+    pub fn gl(&self) -> Option<&std::sync::Arc<glow::Context>> {
         self.gl.as_ref()
     }
 
