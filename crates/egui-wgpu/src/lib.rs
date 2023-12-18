@@ -63,7 +63,7 @@ impl RenderState {
     pub async fn create(
         config: &WgpuConfiguration,
         instance: &wgpu::Instance,
-        surface: &wgpu::Surface,
+        surface: &wgpu::Surface<'_>,
         depth_format: Option<wgpu::TextureFormat>,
         msaa_samples: u32,
     ) -> Result<Self, WgpuError> {
