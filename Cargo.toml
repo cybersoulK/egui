@@ -55,9 +55,7 @@ raw-window-handle = "0.5.2"
 thiserror = "1.0.37"
 
 # Make the renderer `Sync` even on wasm32, because it makes the code simpler:
-wgpu = { git = "https://github.com/gfx-rs/wgpu", rev = "3ffd5a1e56938f78878e2300a489e27ba2f08ed3", features = [
-    "fragile-send-sync-non-atomic-wasm",
-] }
+wgpu = { version = "0.19.0", features = ["fragile-send-sync-non-atomic-wasm"] }
 
 # Use this to build wgpu with WebGL support on the Web *instead* of using WebGPU.
 #wgpu = { version = "0.18.0", features = ["webgl"] }
