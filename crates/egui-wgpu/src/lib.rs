@@ -70,7 +70,7 @@ impl RenderState {
         crate::profile_scope!("RenderState::create"); // async yield give bad names using `profile_function`
 
         #[cfg(not(target_arch = "wasm32"))]
-        let adapters: Vec<_> = instance.enumerate_adapters(wgpu::Backends::all()).collect();
+        let adapters: Vec<_> = instance.enumerate_adapters(wgpu::Backends::all()).into_iter().collect();
 
         let adapter = {
             crate::profile_scope!("request_adapter");
